@@ -1,0 +1,114 @@
+@import './colors.scss';
+
+.toggler {
+  background: transparent;
+  width: 9em;
+  height: 2.7em;
+  margin-right: 5rem;
+  border-radius: 10%;
+  position: relative;
+}
+
+.toggler input[type='checkbox'],
+.background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  margin: 0;
+  border-radius: inherit;
+  z-index: 3;
+  background-color: transparent;
+}
+
+.toggler input[type='checkbox'] {
+  cursor: pointer;
+  -webkit-appearance: none;
+  width: 100%;
+  left: 0;
+  right: 0;
+  border: 0;
+}
+
+.toggler input[type='checkbox']:active,
+.toggler input[type='checkbox']:focus,
+.toggler .background,
+.toggler label,
+.toggler {
+  outline: 1px solid transparent;
+}
+.toggler label {
+  color: $white;
+}
+
+.toggler label {
+  font-size: 1.3rem;
+  font-weight: 600;
+  position: absolute;
+  top: 25%;
+  z-index: 2;
+}
+
+.toggler .checked-label {
+  left: 15px;
+}
+
+.toggler .unchecked-label {
+  right: 15px;
+}
+
+.toggler .background {
+  width: 0;
+  z-index: 1;
+}
+
+.toggler .unchecked-background {
+  background-color: $blue;
+  right: 0;
+}
+
+.toggler .checked-background {
+  background-color: $green;
+  left: 0;
+}
+
+.toggler input[type='checkbox']:not(:checked) ~ .unchecked-background,
+.toggler input[type='checkbox']:checked ~ .checked-background {
+  -webkit-animation-name: check;
+  animation-name: check;
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+.toggler input[type='checkbox']:not(:checked) ~ .checked-background,
+.toggler input[type='checkbox']:checked ~ .unchecked-background {
+  -webkit-animation-name: uncheck;
+  animation-name: uncheck;
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+.toggler input[type='checkbox']:not(:checked) ~ .checked-label,
+.toggler input[type='checkbox']:checked ~ .unchecked-label {
+  visibility: hidden;
+}
+
+@keyframes check {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes uncheck {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}

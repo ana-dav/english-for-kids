@@ -1,0 +1,97 @@
+@import './colors.scss';
+
+.page-name {
+  font-size: 3rem;
+  font-weight: 600;
+  color: $green;
+  padding: 0 5rem 0.5rem;
+  cursor: zoom-in;
+  @media (max-width: 600px) and (min-width: 491px) {
+    padding: 1rem 5rem 0.5rem;
+    font-size: 2rem;
+  }
+  @media (max-width: 490px) {
+    padding: 2rem 0 2rem 2rem;
+    font-size: 1.5rem;
+  }
+}
+
+.cards__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0 5rem;
+  @media (max-width: 490px) {
+    padding: 0 2rem;
+  }
+}
+
+.cards__wrapper > div {
+  margin: 1rem 0;
+  @media (max-width: 750px) {
+    margin: 1rem auto;
+  }
+}
+
+.cards {
+  width: calc(100% / 4 - 30px);
+  height: 290px;
+  border-radius: 19px 19px 0 0;
+  position: relative;
+  perspective: 500px;
+  &:hover {
+    cursor: pointer;
+    box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.08);
+  }
+  .front,
+  .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease-in;
+    backface-visibility: hidden;
+    box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 19px 19px 19px 19px;
+    z-index: 99;
+  }
+  &__img {
+    height: 203px;
+    border-radius: 19px 19px 0 0;
+    background-position: top;
+    background-repeat: round;
+    background-image: url('../assets/images/angry.jpg');
+  }
+  &__description {
+    height: 100px;
+    background-color: white;
+    border-radius: 0 0 19px 19px;
+    text-align: center;
+    padding: calc((203px - 1.6rem) / 4) 0;
+    padding-left: 2rem;
+    font-size: 1.5rem;
+    color: orange;
+    font-weight: 600;
+  }
+  &__icon {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+  @media (max-width: 1400px) and (min-width: 1100px) {
+    width: calc(100% / 3 - 30px);
+  }
+  @media (max-width: 1099px) and (min-width: 751px) {
+    width: calc(100% / 2 - 30px);
+  }
+  @media (max-width: 750px) and (min-width: 421px) {
+    width: 80%;
+  }
+  @media (max-width: 420px) {
+    width: 100%;
+  }
+}
+
+.rotate .back {
+  transform: rotateY(-180deg);
+}

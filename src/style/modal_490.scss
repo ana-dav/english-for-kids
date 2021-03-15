@@ -1,0 +1,10 @@
+@media (max-width: 490px) {
+  .custom-modal {
+    &-main-image {
+      height: 150px;
+    }
+    &-head-text {
+      font-size: 1rem;
+    }
+  }
+}

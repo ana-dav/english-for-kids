@@ -1,0 +1,132 @@
+@import './colors.scss';
+
+.page__wrapper {
+  display: flex;
+  justify-content: space-between;
+  @media (max-width: 490px) {
+    flex-direction: column;
+  }
+}
+
+@mixin game__start-border-drawing(
+  $color: $gray-l,
+  $hover: black,
+  $width: 2px,
+  $vertical: top,
+  $horizontal: left,
+  $duration: 0.25s
+) {
+  box-shadow: inset 0 0 0 $width $color;
+  color: $color;
+  transition: color $duration $duration/3;
+  position: relative;
+
+  &::before,
+  &::after {
+    border: 0 solid transparent;
+    box-sizing: border-box;
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+
+    #{$vertical}: 0;
+    #{$horizontal}: 0;
+  }
+
+  &::before {
+    $h-side: if($horizontal == 'left', 'right', 'left');
+
+    border-#{$vertical}-width: $width;
+    border-#{$h-side}-width: $width;
+  }
+
+  &::after {
+    $v-side: if($vertical == 'top', 'bottom', 'top');
+
+    border-#{$v-side}-width: $width;
+    border-#{$horizontal}-width: $width;
+  }
+
+  &:hover {
+    color: $hover;
+
+    &::before,
+    &::after {
+      border-color: $hover;
+      transition: border-color 0s, width $duration, height $duration;
+      width: 100%;
+      height: 100%;
+    }
+
+    &::before {
+      transition-delay: 0s, 0s, $duration;
+    }
+
+    &::after {
+      transition-delay: 0s, $duration, 0s;
+    }
+  }
+}
+
+.border {
+  @include game__start-border-drawing($green-l, $yellow-l, 4px, bottom, right);
+}
+
+.cards__img-full {
+  height: 100%;
+  border-radius: 19px 19px 19px 19px;
+  background-image: url('../assets/images/angry.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  &:hover {
+    box-shadow: 2px 3px 4px $black-filter-d;
+  }
+}
+
+.not-active {
+  filter: grayscale(80%);
+}
+
+.stars__wrapper {
+  display: flex;
+  justify-content: flex-end;
+  min-width: 90%;
+  margin: 0 5rem;
+  overflow-x: hidden;
+  @media (max-width: 490px) {
+    margin: 0;
+  }
+}
+
+.star {
+  height: 60px;
+  min-width: 60px;
+  display: flex;
+}
+
+.game__start,
+.repeat {
+  background: none;
+  border: none;
+  cursor: pointer;
+  height: 3.5rem;
+  font: 700 1.2rem 'Roboto Slab', sans-serif;
+  padding: 0 1.5em;
+  letter-spacing: 0.05rem;
+  margin-right: 5rem;
+  &:focus {
+    outline: 2px dotted $green-l;
+  }
+  @media (max-width: 490px) {
+    margin: 0 auto;
+    width: 50%;
+  }
+}
+
+.repeat {
+  padding-left: 2rem;
+  padding-right: 1rem;
+  width: 8rem;
+}
