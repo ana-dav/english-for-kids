@@ -1,4 +1,4 @@
-import { goToPage } from './util/router';
+import goToPage from './util/router';
 import fillNavHtml from './components/navBar';
 import '../style/style.scss';
 

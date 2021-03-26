@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="./style/style.css" /> -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -14,11 +13,9 @@
   <body>
     <header>
       <div class="toggler">
-        <input type="checkbox" class="game-mode" id="game-mode" />
-        <label for="game-mode" class="checked-label">TRAIN</label>
-        <label for="game-mode" class="unchecked-label">PLAY</label>
-        <div class="background checked-background"></div>
-        <div class="background unchecked-background"></div>
+        <input type="checkbox" class="checkbox" />
+        <div class="knobs"></div>
+        <div class="layer"></div>
       </div>
       <nav class="nav">
         <input id="nav__toggle" type="checkbox" />
@@ -78,6 +75,5 @@
     </header>
 
     <div id="app" class="app"></div>
-    <!-- <script type="module" src="./js/index.js"></script> -->
   </body>
 </html>

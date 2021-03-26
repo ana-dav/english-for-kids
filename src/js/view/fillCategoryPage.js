@@ -26,7 +26,9 @@ function fillCategoryHtmlPage() {
     }`;
     categoryNameBack[i].textContent = cards[categoryIndex + 1][i].translation;
     const imageName = cards[categoryIndex + 1][i].image;
+    imgFront.style.backgroundColor = '#ffffff';
     imgFront.style.backgroundImage = `url("${imgPath}/${imageName}")`;
+    categoryImgBack[i].style.backgroundColor = '#ffffff';
     categoryImgBack[i].style.backgroundImage = `url("${imgPath}/${imageName}")`;
   });
 
@@ -38,8 +40,8 @@ function fillCategoryHtmlPage() {
       categoryCardsBack[i].style.transform = 'rotateY(0deg)';
     }));
 
-  categoryCardsBack.forEach((turn, i) => turn
-    .addEventListener('mouseout', () => {
+  categoryCardsBack.forEach((card, i) => card
+    .addEventListener('mouseleave', () => {
       categoryCardsFront[i].style.transform = 'rotateY(0deg)';
       categoryCardsBack[i].style.transform = 'rotateY(-180deg)';
     }));

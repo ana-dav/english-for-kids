@@ -1,114 +1,74 @@
-@import './colors.scss';
-
-.toggler {
-  background: transparent;
-  width: 9em;
-  height: 2.7em;
-  margin-right: 5rem;
-  border-radius: 10%;
-  position: relative;
-}
-
-.toggler input[type='checkbox'],
-.background {
+.knobs,
+.layer {
   position: absolute;
   top: 0;
-  bottom: 0;
-  height: 100%;
-  margin: 0;
-  border-radius: inherit;
-  z-index: 3;
-  background-color: transparent;
-}
-
-.toggler input[type='checkbox'] {
-  cursor: pointer;
-  -webkit-appearance: none;
-  width: 100%;
-  left: 0;
   right: 0;
-  border: 0;
+  bottom: 0;
+  left: 0;
 }
 
-.toggler input[type='checkbox']:active,
-.toggler input[type='checkbox']:focus,
-.toggler .background,
-.toggler label,
 .toggler {
-  outline: 1px solid transparent;
-}
-.toggler label {
-  color: $white;
+  position: relative;
+  width: 144px;
+  height: 52px;
+  margin-right: 75px;
+  overflow: hidden;
+  border-radius: 100px;
 }
 
-.toggler label {
-  font-size: 1.3rem;
-  font-weight: 600;
-  position: absolute;
-  top: 25%;
+.checkbox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.knobs {
   z-index: 2;
 }
 
-.toggler .checked-label {
-  left: 15px;
-}
-
-.toggler .unchecked-label {
-  right: 15px;
-}
-
-.toggler .background {
-  width: 0;
-  z-index: 1;
-}
-
-.toggler .unchecked-background {
-  background-color: $blue;
-  right: 0;
-}
-
-.toggler .checked-background {
+.layer {
+  width: 100%;
   background-color: $green;
-  left: 0;
+  transition: 0.3s ease all;
+  z-index: 1;
+  border-radius: 90px;
 }
 
-.toggler input[type='checkbox']:not(:checked) ~ .unchecked-background,
-.toggler input[type='checkbox']:checked ~ .checked-background {
-  -webkit-animation-name: check;
-  animation-name: check;
-  -webkit-animation-duration: 0.3s;
-  animation-duration: 0.3s;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-}
-.toggler input[type='checkbox']:not(:checked) ~ .checked-background,
-.toggler input[type='checkbox']:checked ~ .unchecked-background {
-  -webkit-animation-name: uncheck;
-  animation-name: uncheck;
-  -webkit-animation-duration: 0.3s;
-  animation-duration: 0.3s;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-}
-.toggler input[type='checkbox']:not(:checked) ~ .checked-label,
-.toggler input[type='checkbox']:checked ~ .unchecked-label {
-  visibility: hidden;
+.knobs:before {
+  content: 'TRAIN';
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  width: 65px;
+  height: 30px;
+  color: #fff;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.8;
+  padding: 9px 4px;
+  background-color: $yellow;
+  border-radius: 40%;
+  transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
 }
 
-@keyframes check {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 100%;
-  }
+.checkbox:checked + .knobs:before {
+  content: 'PLAY';
+  left: 67px;
+  background-color: $green;
 }
 
-@keyframes uncheck {
-  0% {
-    width: 100%;
-  }
-  100% {
-    width: 0%;
-  }
+.checkbox:checked ~ .layer {
+  background-color: $blue;
+}
+
+.knobs,
+.knobs:before,
+.layer {
+  transition: 0.3s ease all;
 }

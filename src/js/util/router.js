@@ -1,4 +1,4 @@
-import { isGameModeOff } from '../components/localStorage';
+import { gameMode, checkbox } from '../constants/constants';
 import cards from '../data/cards';
 import fillMainPage from '../view/fillMainPage';
 import fillCategoryHtmlPage from '../view/fillCategoryPage';
@@ -18,7 +18,7 @@ function goToRoute(pageName) {
   xhttp.send();
 }
 
-export function goToPage() {
+function goToPage() {
   let isHashCorrect = false;
   cards[0].forEach((card) => {
     if (
@@ -28,6 +28,16 @@ export function goToPage() {
       isHashCorrect = true;
     }
   });
+
+  let isGameModeOff = true;
+  gameMode.addEventListener('click', function setLocalStorage() {
+    isGameModeOff = !checkbox.checked;
+    localStorage.setItem('study-mode', isGameModeOff);
+    goToPage();
+    gameMode.removeEventListener('click', setLocalStorage);
+  });
+
+  isGameModeOff = localStorage.getItem('study-mode');
 
   const hashLocation = window.location.hash;
   if (hashLocation.length === 0 || hashLocation === '' || hashLocation === '#main') {
@@ -45,13 +55,13 @@ export function goToPage() {
     });
   } else if (
     isHashCorrect
-    && (isGameModeOff.state === true || isGameModeOff.state === 'true')
+    && (isGameModeOff === true || isGameModeOff === 'true')
   ) {
     goToRoute('train.html');
     fillCategoryHtmlPage();
   } else if (
     isHashCorrect
-    && (isGameModeOff.state === false || isGameModeOff.state === 'false')
+    && (isGameModeOff === false || isGameModeOff === 'false')
   ) {
     goToRoute('game.html');
     fillGameHtmlPage();
@@ -60,4 +70,6 @@ export function goToPage() {
   }
 }
 
-export const onHashChange = window.addEventListener('hashchange', goToPage);
+window.addEventListener('hashchange', goToPage);
+
+export default goToPage;
