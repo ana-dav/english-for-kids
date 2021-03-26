@@ -1,6 +1,6 @@
 # english-for-kids
 
-Deploy: ...
+Deploy: https://english-for-kids-v1.netlify.app/
 
 ## Building and running on localhost
 
